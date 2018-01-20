@@ -76,10 +76,10 @@ def handle_session_end_request():
 def handle_add_food_intent(intent):
     #print(intent['slots']['food_type'])
     user_food = intent['slots']['food_type']['value']
+    # Default quantity is 1 if it was not specified
     quantity = 1
     try:
         quantity = intent['slots']['quantity']['value']
-        #break
     except:
         pass
     #print("User food was %s", user_food)
