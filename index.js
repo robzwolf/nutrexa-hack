@@ -1,4 +1,5 @@
 const Alexa = require('alexa-sdk');
+const dynamo = require("database");
 
 exports.handler = function(event, context, callback) {
     let alexa = Alexa.handler(event, context);
@@ -41,7 +42,17 @@ const handlers = {
         this.response.speak(STOP_MESSAGE);
         this.emit(':responseReady');
     },
-    'FoodIntent': function () {
+    'AddFoodIntent': function () {
+        known_foods = ["beer", "hamburger", "apple"];
+        food_type = this.event.request.intent.slots.food_type.value
+        if(known_foods.indexOf(food_type) == -1) {
+            // We don't know what that food item is
+            // We'll add it to the DB anyway but tell the user we don't know its nutritional info
+            dynamo.addToDB(food_type);
+        }
+        
+        
+        
         this.response.speak("You said you ate a " + this.event.request.intent.slots.food_type.value)
         this.emit(':responseReady');
     }
