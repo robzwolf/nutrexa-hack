@@ -11,5 +11,8 @@
     "url": "https://github.com/robzwolf/nutrexa-hack/"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "alexa-sdk": "^1.0.25"
+  }
 }
