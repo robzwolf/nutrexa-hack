@@ -21,6 +21,7 @@ module.exports = {
           }
       };
 
+      var hasfinshed = false;
       docClient.query(params, function(err, data) {
           if (err) {
               console.log("Unable to query.");
@@ -36,9 +37,10 @@ module.exports = {
                 returnValue = true;
               }
           }
+          hasfinshed = true;
       });
       
-      while(returnValue === {}) {};
+      while(!hasfinshed) {};
 
       console.log("We are getting inside checkItemExistence method");
       console.log(returnValue);
@@ -68,7 +70,7 @@ module.exports = {
        hasfinshed = true;
     });
 
-    while(hasfinshed === false) {};
+    while(!hasfinshed) {};
 
     console.log("We are getting inside addItemToDB method", hasfinshed);
 

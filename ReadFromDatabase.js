@@ -15,7 +15,7 @@ module.exports = {
                 "Identifier": foodItem.name
             }
         };    
-
+        var hasFinished = false;
         docClient.get(params, function(err, data) {
             if (err) {
                 console.log("Unable to read item.");
@@ -23,9 +23,10 @@ module.exports = {
                 data_to_return = data;
                 console.log("GetItem succeeded.");
             }
+            hasFinished = true;
         });
 
-        while(data_to_return === {}) {};
+        while(!hasFinished) {};
 
         return data_to_return;
     }
