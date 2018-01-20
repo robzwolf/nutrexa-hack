@@ -1,12 +1,17 @@
 var AWS = require("aws-sdk");
 
+AWS.config.update({
+  region: "eu-west-1",
+  endpoint: "dynamodb.eu-west-1.amazonaws.com"
+});
+
+var docClient = new AWS.DynamoDB.DocumentClient();
+
 console.log("Adding item in the Databse, table Food_Items");
 
 module.exports = {
 
   checkItemExistence: function(foodItem, callbackWhenTrue, callbackWhenFalse) {
-
-      var docClient = new AWS.DynamoDB.DocumentClient();
 
       var params = {
           TableName : "Food_Items",
@@ -41,8 +46,6 @@ module.exports = {
 
 
   addItemToDB: function(foodItem) {
-    
-    var docClient = new AWS.DynamoDB.DocumentClient();
 
     var params = {
         TableName:"Food_Items",
