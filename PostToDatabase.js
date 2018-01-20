@@ -1,10 +1,10 @@
 var AWS = require("aws-sdk");
 
-var docClient = new AWS.DynamoDB.DocumentClient();
-
 console.log("Adding item in the Databse, table Food_Items");
 
 module.exports = {
+
+  docClient: new AWS.DynamoDB.DocumentClient(),
 
   checkItemExistence: function(foodItem, callbackWhenTrue, callbackWhenFalse) {
     
@@ -19,7 +19,9 @@ module.exports = {
           }
       };
 
-      docClient.query(params, function(err, data) {
+      console.log("Checking item exists");
+
+      module.exports.docClient.query(params, function(err, data) {
           if (err) {
               console.log("Unable to query.");
           } 
@@ -49,7 +51,7 @@ module.exports = {
     };
 
     console.log("Adding a new item...");
-    docClient.put(params, function(err, data) {
+    module.exports.docClient.put(params, function(err, data) {
        if (err) {
            console.log("Unable to add food", foodItem.name);
        } else {
