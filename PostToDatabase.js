@@ -4,7 +4,7 @@ var docClient = new AWS.DynamoDB.DocumentClient();
 
 console.log("Adding item in the Databse, table Food_Items");
 
-var returnValue = {}};
+var returnValue = {};
 
 module.exports = {
 
@@ -38,7 +38,7 @@ module.exports = {
           }
       });
 
-      while(returnValue == {}) {}
+      while(returnValue == {}) {};
 
       return returnValue;
   },
