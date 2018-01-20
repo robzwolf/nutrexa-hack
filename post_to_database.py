@@ -3,7 +3,7 @@
 def check_item_existence(food_item):
     # Check the item exists
     print("check_item_existence called", food_item)
-    return true
+    return True
     
 def add_item_to_DB(food_item):
     # Add to Food_Items DB

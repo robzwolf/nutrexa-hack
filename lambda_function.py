@@ -79,7 +79,7 @@ def handle_add_food_intent(intent):
     quantity = 1
     try:
         quantity = intent['slots']['quantity']['value']
-        break
+        #break
     except:
         pass
     #print("User food was %s", user_food)
