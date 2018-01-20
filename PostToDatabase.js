@@ -1,18 +1,5 @@
 var AWS = require("aws-sdk");
 
-AWS.config.update({
-  region: "eu-west-1"
-});
-
-var docClient = new AWS.DynamoDB.DocumentClient();
-
-var params = {
-    TableName: 'Food_Items',
-    Key: {
-        "Identifier": "hamburger"
-    }
-};
-
 console.log("Adding item in the Databse, table Food_Items");
 
 module.exports = {
@@ -21,15 +8,30 @@ module.exports = {
 
       console.log("Checking item exists for ", foodItem.name);
 
+      AWS.config.update({
+        region: "eu-west-1",
+        endpoint: "https://dynamodb.eu-west-1.amazonaws.com"
+      });
+
+      var docClient = new AWS.DynamoDB.DocumentClient()
+
+      var table = "Food_Items";
+
+      var foodName = foodItem.name;
+
+      var params = {
+          TableName: table,
+          Key:{
+              "Identifier": foodName
+          }
+      };
+
+      console.log("Making call...");
       docClient.get(params, function(err, data) {
-          console.log("Query callback");
           if (err) {
-              console.log("Unable to query.", err);
-              callbackWhenFalse();
-          } 
-          else {
+              console.log("Unable to read item. Error JSON:", JSON.stringify(err, null, 2));
+          } else {
               console.log("GetItem succeeded:", JSON.stringify(data, null, 2));
-              callbackWhenTrue();
           }
       });
 
