@@ -107,4 +107,7 @@ const handlers = {
         this.response.speak(STOP_MESSAGE);
         this.emit(':responseReady');
     },
+    'FoodIntent': function () {
+        this.response.speak("You said you ate a " + food_type)
+    }
 }; 
