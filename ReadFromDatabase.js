@@ -4,31 +4,24 @@ var docClient = new AWS.DynamoDB.DocumentClient();
 
 console.log("Checking item in the Databse, table Food_Items");
 
-var data_to_return = {};
-
 module.exports = {
 
-    getItemInformation: function(foodItem){
+    getItemInformation: function(foodItem, callback){
         var params = {
             TableName: "Food_Items",
             Key:{
                 "Identifier": foodItem.name
             }
-        };    
-        var hasFinished = false;
+        };
+
         docClient.get(params, function(err, data) {
             if (err) {
                 console.log("Unable to read item.");
             } else {
-                data_to_return = data;
                 console.log("GetItem succeeded.");
+                callback(data);
             }
-            hasFinished = true;
         });
-
-        while(!hasFinished) {};
-
-        return data_to_return;
     }
 
 };

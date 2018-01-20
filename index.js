@@ -53,14 +53,12 @@ const handlers = {
         }
         
         // Check if the item is understood (in food items DB) and act appropriately
-        if(!post_to_database.checkItemExistence(foodItem) === true) {
+        post_to_database.checkItemExistence(foodItem, function() {
+            this.response.speak("That item existed already.");
+        }, function() {
             this.response.speak("That item did not exist, adding it to the database.");
             post_to_database.addItemToDB(foodItem);
-        }
-        else {
-            this.response.speak("That item existed already.");
-        }
-        
+        });
         
         // Now that we've ensured the item exists in food items DB, add it to food consumption
         //post_to_database.consumeFoodItem(foodItem);
