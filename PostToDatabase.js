@@ -11,15 +11,15 @@ module.exports = {
   checkItemExistence: function(foodItem) {
     
       var params = {
-      TableName : "Food_Items",
-      KeyConditionExpression: "#id = :name",
-      ExpressionAttributeNames:{
-          "#id": "Identifier"
-      },
-      ExpressionAttributeValues: {
-          ":name":foodItem.name
-      }
-  };
+          TableName : "Food_Items",
+          KeyConditionExpression: "#id = :name",
+          ExpressionAttributeNames:{
+              "#id": "Identifier"
+          },
+          ExpressionAttributeValues: {
+              ":name":foodItem.name
+          }
+      };
 
       docClient.query(params, function(err, data) {
           if (err) {
@@ -41,6 +41,7 @@ module.exports = {
       while(returnValue === {}) {};
 
       console.log("We are getting inside checkItemExistence method");
+      console.log(returnValue);
 
       return returnValue;
   },
@@ -69,7 +70,7 @@ module.exports = {
 
     while(hasfinshed === false) {};
 
-    console.log("We are getting inside addItemToDB method");
+    console.log("We are getting inside addItemToDB method", hasfinshed);
 
   }
 
