@@ -1,5 +1,8 @@
 # This file is the new PostToDatabase.js
 
+from __future__ import print_function
+import boto3
+
 def check_item_existence(food_item):
     # Check the item exists
 
