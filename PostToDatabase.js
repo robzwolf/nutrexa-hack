@@ -26,7 +26,11 @@ module.exports = {
 
       console.log("Checking item exists");
 
+      console.log(docClient);
+      console.log(docClient.query);
+
       docClient.query(params, function(err, data) {
+          console.log("Query callback");
           if (err) {
               console.log("Unable to query.");
           } 
@@ -42,6 +46,8 @@ module.exports = {
               }
           }
       });
+
+      console.log("Waiting for callback");
   },
 
 
