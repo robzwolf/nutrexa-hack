@@ -13,12 +13,12 @@ module.exports = {
   checkItemExistence: function(foodItem, callbackWhenTrue, callbackWhenFalse) {
 
       var params = {
-          TableName : "Food_Items",
-          KeyConditionExpression: "Identifier = :name",
-          ExpressionAttributeValues: {
-              ":name": foodItem.name
-          }
-      };
+        ExpressionAttributeValues: {
+            ':s' : {S: foodItem.name}
+           },
+         KeyConditionExpression: 'Identifier = :s',
+         TableName: 'Food_Items'
+        };
 
       console.log("Checking item exists for ", foodItem.name);
       console.log(params);
