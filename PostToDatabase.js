@@ -15,19 +15,14 @@ module.exports = {
 
       var params = {
           TableName : "Food_Items",
-          KeyConditionExpression: "#id = :name",
-          ExpressionAttributeNames:{
-              "#id": "Identifier"
-          },
+          KeyConditionExpression: "Identifier = :name",
           ExpressionAttributeValues: {
-              ":name":foodItem.name
+              ":name": foodItem.name
           }
       };
 
-      console.log("Checking item exists");
-
-      console.log(docClient);
-      console.log(docClient.query);
+      console.log("Checking item exists for ", foodItem.name);
+      console.log(params);
 
       docClient.query(params, function(err, data) {
           console.log("Query callback");
@@ -38,9 +33,9 @@ module.exports = {
               console.log("Query succeeded.");
               if (data.Items.length == 0)
               {
-                callbackWhenFalse();
-              }
+                callbackWhenFalse();}
               else
+              
               {
                 callbackWhenTrue();
               }

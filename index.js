@@ -52,18 +52,21 @@ const handlers = {
             quantity: 1
         }
         
+        var complete = false;
         // Check if the item is understood (in food items DB) and act appropriately
         post_to_database.checkItemExistence(foodItem, function() {
             this.response.speak("That item existed already.");
+            complete = true;
         }, function() {
             this.response.speak("That item did not exist, adding it to the database.");
             post_to_database.addItemToDB(foodItem);
+            complete = true;
         });
         
         // Now that we've ensured the item exists in food items DB, add it to food consumption
         //post_to_database.consumeFoodItem(foodItem);
         
-        
+        while (!complete) {}
         this.emit(':responseReady');
     },
     'GetAllFoodIntent': function () {
