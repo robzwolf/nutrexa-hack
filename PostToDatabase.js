@@ -4,7 +4,14 @@ AWS.config.update({
   region: "eu-west-1"
 });
 
-var ddb = new AWS.DynamoDB({apiVersion: '2012-10-08'});
+var docClient = new AWS.DynamoDB.DocumentClient();
+
+var params = {
+    TableName: 'Food_Items',
+    Key: {
+        "Identifier": "hamburger"
+    }
+};
 
 console.log("Adding item in the Databse, table Food_Items");
 
@@ -12,32 +19,17 @@ module.exports = {
 
   checkItemExistence: function(foodItem, callbackWhenTrue, callbackWhenFalse) {
 
-      var params = {
-        ExpressionAttributeValues: {
-            ':s' : {S: foodItem.name}
-           },
-         ProjectionExpression: 'Identifier',
-         KeyConditionExpression: 'Identifier = :s',
-         TableName: 'Food_Items'
-        };
-
       console.log("Checking item exists for ", foodItem.name);
 
-      ddb.query(params, function(err, data) {
+      docClient.get(params, function(err, data) {
           console.log("Query callback");
           if (err) {
               console.log("Unable to query.", err);
+              callbackWhenFalse();
           } 
           else {
-              console.log("Query succeeded.");
-              if (data.Items.length == 0)
-              {
-                callbackWhenFalse();}
-              else
-              
-              {
-                callbackWhenTrue();
-              }
+              console.log("GetItem succeeded:", JSON.stringify(data, null, 2));
+              callbackWhenTrue();
           }
       });
 
