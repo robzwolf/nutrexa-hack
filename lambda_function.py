@@ -74,21 +74,33 @@ def handle_session_end_request():
         card_title, speech_output, None, should_end_session))
         
 def handle_add_food_intent(intent):
-    #print(intent['slots']['food_type'])
+    
     user_food = intent['slots']['food_type']['value']
+    
     # Default quantity is 1 if it was not specified
     quantity = 1
     try:
         quantity = intent['slots']['quantity']['value']
     except:
         pass
-    #print("User food was %s", user_food)
-    food_item = [user_food, quantity]
-    print("Food item is", food_item)
-    post_to_database.check_item_existence(food_item)
     
+    food_item = [user_food, quantity]
+    
+    print("Food item is", food_item)
+    
+    
+    # Check if the item is understood (exists in Food_Items DB) and act appropriately
+    if post_to_database.check_item_existence(food_item):
+        basic_say("That item existed already.")
+    else:
+        basic_say("That item did not exist, adding it to Food Items database.")
+        post_to_database.add_item_to_DB(food_item)
     
 
+    
+def basic_say(words, should_end_session=True):
+    return build_response({}, build_speechlet_response(
+        "Response", words, None, should_end_session))
 
 def create_favorite_color_attributes(favorite_color):
     return {"favoriteColor": favorite_color}
