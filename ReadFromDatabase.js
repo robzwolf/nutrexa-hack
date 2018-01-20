@@ -18,7 +18,7 @@ module.exports = {
 
         docClient.get(params, function(err, data) {
             if (err) {
-                console.error("Unable to read item.");
+                console.log("Unable to read item.");
             } else {
                 data_to_return = data;
                 console.log("GetItem succeeded.");

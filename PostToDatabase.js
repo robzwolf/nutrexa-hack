@@ -23,7 +23,7 @@ module.exports = {
 
       docClient.query(params, function(err, data) {
           if (err) {
-              console.error("Unable to query.");
+              console.log("Unable to query.");
           } 
           else {
               console.log("Query succeeded.");
@@ -55,12 +55,12 @@ module.exports = {
     console.log("Adding a new item...");
     docClient.put(params, function(err, data) {
        if (err) {
-           console.error("Unable to add food", foodItem.name);
+           console.log("Unable to add food", foodItem.name);
        } else {
            console.log("PutItem succeeded:", foodItem.name);
        }
     });
-    
+
     console.log("We are getting inside addItemToDB method");
 
   }
