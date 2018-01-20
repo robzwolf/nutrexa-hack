@@ -1,5 +1,6 @@
 const Alexa = require('alexa-sdk');
-const dynamo = require("database");
+const post_to_database = require("PostToDatabase");
+const read_from_database = require("ReadFromDatabase");
 
 exports.handler = function(event, context, callback) {
     let alexa = Alexa.handler(event, context);
@@ -43,17 +44,28 @@ const handlers = {
         this.emit(':responseReady');
     },
     'AddFoodIntent': function () {
-        known_foods = ["beer", "hamburger", "apple"];
-        food_type = this.event.request.intent.slots.food_type.value
-        if(known_foods.indexOf(food_type) == -1) {
-            // We don't know what that food item is
-            // We'll add it to the DB anyway but tell the user we don't know its nutritional info
-            dynamo.addToDB(food_type);
+        
+        food_type = this.event.request.intent.slots.food_type.value;
+        
+        foodItem = {
+            name: food_type,
+            quantity: 1
         }
         
+        if(post_to_database.checkItemExistence(foodItem)) {
+            // If the item already exists
+            // Continue adding it to the DB
+            //read_from_database.consumeFoodItem(foodItem);
+            
+        } else {
+            // If the item doesn't exist
+            //post_to_database.add
+        }
         
-        
-        this.response.speak("You said you ate a " + this.event.request.intent.slots.food_type.value)
         this.emit(':responseReady');
+    },
+    'GetAllFoodIntent': function () {
+        // Get a list of all food from the dynamoDB
+        
     }
 }; 
