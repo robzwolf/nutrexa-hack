@@ -1,10 +1,10 @@
 var AWS = require("aws-sdk");
 
 AWS.config.update({
-  region: "eu-west-1",
-  endpoint: "dynamodb.eu-west-1.amazonaws.com"
+  region: "eu-west-1"
 });
 
+var ddb = new AWS.DynamoDB({apiVersion: '2012-10-08'});
 
 console.log("Adding item in the Databse, table Food_Items");
 
@@ -20,12 +20,10 @@ module.exports = {
           }
       };
 
-      var docClient = new AWS.DynamoDB.DocumentClient();
-
       console.log("Checking item exists for ", foodItem.name);
       console.log(params);
 
-      docClient.query(params, function(err, data) {
+      ddb.query(params, function(err, data) {
           console.log("Query callback");
           if (err) {
               console.log("Unable to query.");
@@ -58,10 +56,8 @@ module.exports = {
         }
     };
 
-    var docClient = new AWS.DynamoDB.DocumentClient();
-
     console.log("Adding a new item...");
-    module.exports.docClient.put(params, function(err, data) {
+    ddb.put(params, function(err, data) {
        if (err) {
            console.log("Unable to add food", foodItem.name);
        } else {
