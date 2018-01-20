@@ -91,8 +91,10 @@ def handle_add_food_intent(intent):
     
     # Check if the item is understood (exists in Food_Items DB) and act appropriately
     if post_to_database.check_item_existence(food_item):
+        print("check_item_existence returned True")
         basic_say("That item existed already.")
     else:
+        print("check_item_existence returned False")
         basic_say("That item did not exist, adding it to Food Items database.")
         post_to_database.add_item_to_DB(food_item)
     
