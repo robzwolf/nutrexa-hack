@@ -72,7 +72,11 @@ def handle_session_end_request():
         card_title, speech_output, None, should_end_session))
         
 def handle_add_food_intent(intent):
-    print(intent)
+    #print(intent['slots']['food_type'])
+    user_food = intent['slots']['food_type']['value']
+    #print("User food was %s", user_food)
+    
+    
 
 
 def create_favorite_color_attributes(favorite_color):
