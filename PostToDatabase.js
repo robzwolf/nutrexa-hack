@@ -6,17 +6,19 @@ console.log("Adding item in the Databse, table Food_Items");
 
 module.exports = {
 
-  function checkItemExistence(foodItem) {
-  if (foodItem.name) {
-    //read from db and check existance
-    return true;
-  }
-  else
-    return false;
-}
+  checkItemExistence: function(foodItem) {
+    if (foodItem.name) {
+      //read from db and check existance
+      return true;
+    }
+    else
+    {
+      return false;
+    }
+  },
 
 
-function addItemToDB(foodItem) {
+  addItemToDB: function(foodItem) {
     var params = {
         TableName:"Food_Items",
         Item: {
@@ -34,8 +36,8 @@ function addItemToDB(foodItem) {
            console.log("PutItem succeeded:", foodItem.name);
        }
     });
-};
+  }
 
-}
+};
 
 

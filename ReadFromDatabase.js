@@ -7,27 +7,28 @@ console.log("Checking item in the Databse, table Food_Items");
 var data_to_return = {};
 
 module.exports = {
-getItemInformation: function(foodItem){
-    var params = {
-        TableName: "Food_Items",
-        Key:{
-            "Item": foodItem.name
-        }
-    };    
 
-    docClient.get(params, function(err, data) {
-        if (err) {
-            console.error("Unable to read item.");
-        } else {
-            data_to_return = data;
-            console.log("GetItem succeeded.");
-        }
-    });
+    getItemInformation: function(foodItem){
+        var params = {
+            TableName: "Food_Items",
+            Key:{
+                "Item": foodItem.name
+            }
+        };    
 
-    while(data_to_return == {}) {}
+        docClient.get(params, function(err, data) {
+            if (err) {
+                console.error("Unable to read item.");
+            } else {
+                data_to_return = data;
+                console.log("GetItem succeeded.");
+            }
+        });
 
-    return data_to_return;
-}
+        while(data_to_return == {}) {}
 
-}
+        return data_to_return;
+    }
+
+};
     
