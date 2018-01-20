@@ -12,7 +12,7 @@ module.exports = {
         var params = {
             TableName: "Food_Items",
             Key:{
-                "Item": foodItem.name
+                "Identifier": foodItem.name
             }
         };    
 

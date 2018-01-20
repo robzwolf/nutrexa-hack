@@ -4,17 +4,43 @@ var docClient = new AWS.DynamoDB.DocumentClient();
 
 console.log("Adding item in the Databse, table Food_Items");
 
+var returnValue = {}};
+
 module.exports = {
 
   checkItemExistence: function(foodItem) {
-    if (foodItem.name) {
-      //read from db and check existance
-      return true;
-    }
-    else
-    {
-      return false;
-    }
+    
+      var params = {
+      TableName : "Food_Items",
+      KeyConditionExpression: "#id = :name",
+      ExpressionAttributeNames:{
+          "#id": "Identifier"
+      },
+      ExpressionAttributeValues: {
+          ":name":foodItem.name
+      }
+  };
+
+      docClient.query(params, function(err, data) {
+          if (err) {
+              console.error("Unable to query.");
+          } 
+          else {
+              console.log("Query succeeded.");
+              if (data.Items.length == 0)
+              {
+                returnValue = false;
+              }
+              else
+              {
+                returnValue = true;
+              }
+          }
+      });
+
+      while(returnValue == {}) {}
+
+      return returnValue;
   },
 
 

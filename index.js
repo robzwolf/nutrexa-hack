@@ -56,6 +56,9 @@ const handlers = {
         if(!post_to_database.checkItemExistence(foodItem)) {
             post_to_database.addItemToDB(foodItem);
         }
+        else {
+            const speechOutput = 'Your item exists in the database';
+        }
         
         
         // Now that we've ensured the item exists in food items DB, add it to food consumption
