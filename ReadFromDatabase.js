@@ -1,21 +1,14 @@
 var AWS = require("aws-sdk");
 
-AWS.config.update({
-    region: "eu-west-1",
-    endpoint: "http://localhost:8000"
-});
-
 var docClient = new AWS.DynamoDB.DocumentClient();
 
 console.log("Checking item in the Databse, table Food_Items");
-
-var table = Food_Items;
 
 var data_to_return = {};
 
 function getItemInformation(foodItem){
     var params = {
-        TableName: table,
+        TableName: "Food_Items",
         Key:{
             "Item": foodItem.name
         }
@@ -29,6 +22,8 @@ function getItemInformation(foodItem){
             console.log("GetItem succeeded.");
         }
     });
+
+    while(data_to_return == {}) {}
 
     return data_to_return;
 };
