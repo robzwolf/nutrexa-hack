@@ -11,22 +11,24 @@ console.log("Checking item in the Databse, table Food_Items");
 
 var table = Food_Items;
 
+var data_to_return = {};
 
-var item_Name = foodItem.name;
+function getItemInformation(foodItem){
+    var params = {
+        TableName: table,
+        Key:{
+            "Item": foodItem.name
+        }
+    };    
 
-var params = {
-    TableName: table,
-    Key:{
-        "Item": identifier,
-        "Sodium": sodium,
-        "Potasium": potasium
-    }
+    docClient.get(params, function(err, data) {
+        if (err) {
+            console.error("Unable to read item.");
+        } else {
+            data_to_return = data;
+            console.log("GetItem succeeded.");
+        }
+    });
+
+    return data_to_return;
 };
-
-docClient.get(params, function(err, data) {
-    if (err) {
-        console.error("Unable to read item.");
-    } else {
-        console.log("GetItem succeeded.");
-    }
-});

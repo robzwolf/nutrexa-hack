@@ -1,15 +1,8 @@
 var AWS = require("aws-sdk");
 
-AWS.config.update({
-    region: "eu-west-1",
-    endpoint: "http://localhost:8000"
-});
-
 var docClient = new AWS.DynamoDB.DocumentClient();
 
 console.log("Adding item in the Databse, table Food_Items");
-
-var table = Food_Items;
 
 function checkItemExistence(foodItem) {
 	if (foodItem.name) {
@@ -23,15 +16,15 @@ function checkItemExistence(foodItem) {
 
 function addItemToDB(foodItem) {
     var params = {
-        TableName:table,
+        TableName: "Food_Items",
         Item: {
             "Identifier":  foodItem.name,
-            "Sodium": 20,
-            "Potasium":  120
+            "Sodium": (Math.floor(Math.random() * (100 - 20 + 1)) + 20),
+            "Potasium":  (Math.floor(Math.random() * (250 - 120 + 1)) + 120)
         }
     };
 
-	console.log("Adding a new item...");
+	  console.log("Adding a new item...");
     docClient.put(params, function(err, data) {
        if (err) {
            console.error("Unable to add food", foodItem.name);
@@ -39,4 +32,4 @@ function addItemToDB(foodItem) {
            console.log("PutItem succeeded:", foodItem.name);
        }
     });
-});
+};
