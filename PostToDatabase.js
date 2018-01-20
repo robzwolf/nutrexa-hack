@@ -5,7 +5,6 @@ AWS.config.update({
   endpoint: "dynamodb.eu-west-1.amazonaws.com"
 });
 
-var docClient = new AWS.DynamoDB.DocumentClient();
 
 console.log("Adding item in the Databse, table Food_Items");
 
@@ -20,6 +19,8 @@ module.exports = {
               ":name": foodItem.name
           }
       };
+
+      var docClient = new AWS.DynamoDB.DocumentClient();
 
       console.log("Checking item exists for ", foodItem.name);
       console.log(params);
@@ -56,6 +57,8 @@ module.exports = {
             "Potasium":  (Math.floor(Math.random() * (250 - 120 + 1)) + 120)
         }
     };
+
+    var docClient = new AWS.DynamoDB.DocumentClient();
 
     console.log("Adding a new item...");
     module.exports.docClient.put(params, function(err, data) {
