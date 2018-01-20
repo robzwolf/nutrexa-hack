@@ -16,12 +16,12 @@ module.exports = {
         ExpressionAttributeValues: {
             ':s' : {S: foodItem.name}
            },
+         ProjectionExpression: 'Identifier',
          KeyConditionExpression: 'Identifier = :s',
          TableName: 'Food_Items'
         };
 
       console.log("Checking item exists for ", foodItem.name);
-      console.log(params);
 
       ddb.query(params, function(err, data) {
           console.log("Query callback");
