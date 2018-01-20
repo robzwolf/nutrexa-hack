@@ -25,7 +25,7 @@ module.exports = {
             }
         });
 
-        while(data_to_return == {}) {}
+        while(data_to_return === {}) {};
 
         return data_to_return;
     }

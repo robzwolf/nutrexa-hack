@@ -38,7 +38,7 @@ module.exports = {
           }
       });
 
-      while(returnValue == {}) {};
+      while(returnValue === {}) {};
 
       return returnValue;
   },
