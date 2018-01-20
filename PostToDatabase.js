@@ -9,18 +9,17 @@ module.exports = {
       console.log("Checking item exists for ", foodItem.name);
 
       AWS.config.update({
-        region: "eu-west-1",
-        endpoint: "https://dynamodb.eu-west-1.amazonaasdasdws.com"
+        region: "eu-west-1"
       });
 
-      var docClient = new AWS.DynamoDB.DocumentClient()
+      var docClient = new AWS.DynamoDB.DocumentClient({apiVersion: '2012-08-10'})
 
       var table = "Food_Items";
 
       var foodName = foodItem.name;
 
       var params = {
-          TableName: table,
+          TableName: 'Food_Items',
           Key:{
               "Identifier": foodName
           }
@@ -62,5 +61,3 @@ module.exports = {
   }
 
 };
-
-
