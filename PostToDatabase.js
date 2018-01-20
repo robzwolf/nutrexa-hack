@@ -10,7 +10,7 @@ module.exports = {
 
       AWS.config.update({
         region: "eu-west-1",
-        endpoint: "https://dynamodb.eu-west-1.amazonaws.com"
+        endpoint: "https://dynamodb.eu-west-1.amazonaasdasdws.com"
       });
 
       var docClient = new AWS.DynamoDB.DocumentClient()
