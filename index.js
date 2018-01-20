@@ -53,7 +53,7 @@ const handlers = {
         }
         
         // Check if the item is understood (in food items DB) and act appropriately
-        if(!post_to_database.checkItemExistence(foodItem)) {
+        if(!post_to_database.checkItemExistence(foodItem) === true) {
             this.response.speak("That item did not exist, adding it to the database.");
             post_to_database.addItemToDB(foodItem);
         }
