@@ -4,7 +4,7 @@ var docClient = new AWS.DynamoDB.DocumentClient();
 
 console.log("Adding item in the Databse, table Food_Items");
 
-var returnValue = {};
+var returnValue = false;
 
 module.exports = {
 
@@ -37,9 +37,7 @@ module.exports = {
               }
           }
       });
-
-      while(returnValue === {}) {};
-
+      console.log("We are getting inside checkItemExistence method");
       return returnValue;
   },
 
@@ -62,6 +60,9 @@ module.exports = {
            console.log("PutItem succeeded:", foodItem.name);
        }
     });
+    
+    console.log("We are getting inside addItemToDB method");
+
   }
 
 };
