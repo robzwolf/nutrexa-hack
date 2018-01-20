@@ -26,7 +26,7 @@ module.exports = {
       ddb.query(params, function(err, data) {
           console.log("Query callback");
           if (err) {
-              console.log("Unable to query.");
+              console.log("Unable to query.", err);
           } 
           else {
               console.log("Query succeeded.");
@@ -59,7 +59,7 @@ module.exports = {
     console.log("Adding a new item...");
     ddb.put(params, function(err, data) {
        if (err) {
-           console.log("Unable to add food", foodItem.name);
+           console.log("Unable to add food", foodItem.name, err);
        } else {
            console.log("PutItem succeeded:", foodItem.name);
        }
