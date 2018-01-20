@@ -4,19 +4,21 @@ var docClient = new AWS.DynamoDB.DocumentClient();
 
 console.log("Adding item in the Databse, table Food_Items");
 
-function checkItemExistence(foodItem) {
-	if (foodItem.name) {
-		//read from db and check existance
-		return true;
-	}
-	else
-		return false;
+module.exports = {
+
+  function checkItemExistence(foodItem) {
+  if (foodItem.name) {
+    //read from db and check existance
+    return true;
+  }
+  else
+    return false;
 }
 
 
 function addItemToDB(foodItem) {
     var params = {
-        TableName: "Food_Items",
+        TableName:"Food_Items",
         Item: {
             "Identifier":  foodItem.name,
             "Sodium": (Math.floor(Math.random() * (100 - 20 + 1)) + 20),
@@ -24,7 +26,7 @@ function addItemToDB(foodItem) {
         }
     };
 
-	  console.log("Adding a new item...");
+    console.log("Adding a new item...");
     docClient.put(params, function(err, data) {
        if (err) {
            console.error("Unable to add food", foodItem.name);
@@ -33,3 +35,7 @@ function addItemToDB(foodItem) {
        }
     });
 };
+
+}
+
+

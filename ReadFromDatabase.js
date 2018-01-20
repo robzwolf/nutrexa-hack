@@ -6,7 +6,8 @@ console.log("Checking item in the Databse, table Food_Items");
 
 var data_to_return = {};
 
-function getItemInformation(foodItem){
+module.exports = {
+getItemInformation: function(foodItem){
     var params = {
         TableName: "Food_Items",
         Key:{
@@ -26,4 +27,7 @@ function getItemInformation(foodItem){
     while(data_to_return == {}) {}
 
     return data_to_return;
-};
+}
+
+}
+    
