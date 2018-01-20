@@ -52,15 +52,15 @@ const handlers = {
             quantity: 1
         }
         
-        if(post_to_database.checkItemExistence(foodItem)) {
-            // If the item already exists
-            // Continue adding it to the DB
-            //read_from_database.consumeFoodItem(foodItem);
-            
-        } else {
-            // If the item doesn't exist
-            //post_to_database.add
+        // Check if the item is understood (in food items DB) and act appropriately
+        if(!post_to_database.checkItemExistence(foodItem)) {
+            post_to_database.addItemToDB(foodItem);
         }
+        
+        
+        // Now that we've ensured the item exists in food items DB, add it to food consumption
+        //post_to_database.consumeFoodItem(foodItem);
+        
         
         this.emit(':responseReady');
     },
