@@ -12,10 +12,8 @@ def check_item_existence(food_item):
     )
 
     print("check_item_existence called", food_item[0])
-    
-    print(response)
 
-    if(len(response) == 0):
+    if(len(response['Items']) == 0):
         return False
 
     return True
