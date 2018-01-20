@@ -4,10 +4,10 @@ console.log("Adding item in the Databse, table Food_Items");
 
 module.exports = {
 
-  docClient: new AWS.DynamoDB.DocumentClient(),
-
   checkItemExistence: function(foodItem, callbackWhenTrue, callbackWhenFalse) {
-    
+
+      var docClient = new AWS.DynamoDB.DocumentClient();
+
       var params = {
           TableName : "Food_Items",
           KeyConditionExpression: "#id = :name",
@@ -21,7 +21,7 @@ module.exports = {
 
       console.log("Checking item exists");
 
-      module.exports.docClient.query(params, function(err, data) {
+      docClient.query(params, function(err, data) {
           if (err) {
               console.log("Unable to query.");
           } 
@@ -41,6 +41,9 @@ module.exports = {
 
 
   addItemToDB: function(foodItem) {
+    
+    var docClient = new AWS.DynamoDB.DocumentClient();
+
     var params = {
         TableName:"Food_Items",
         Item: {
