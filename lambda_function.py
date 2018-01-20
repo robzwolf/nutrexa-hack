@@ -75,7 +75,7 @@ def handle_session_end_request():
         
 def handle_add_food_intent(intent):
     
-    user_food = intent['slots']['food_type']['value']
+    user_food = lower(intent['slots']['food_type']['value'])
     
     # Default quantity is 1 if it was not specified
     quantity = 1
