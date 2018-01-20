@@ -70,6 +70,9 @@ def handle_session_end_request():
     should_end_session = True
     return build_response({}, build_speechlet_response(
         card_title, speech_output, None, should_end_session))
+        
+def handle_add_food_intent(intent):
+    print(intent)
 
 
 def create_favorite_color_attributes(favorite_color):
@@ -163,6 +166,8 @@ def on_intent(intent_request, session):
         return get_welcome_response()
     elif intent_name == "AMAZON.CancelIntent" or intent_name == "AMAZON.StopIntent":
         return handle_session_end_request()
+    elif intent_name == "AddFoodIntent":
+        return handle_add_food_intent(intent)
     else:
         raise ValueError("Invalid intent")
 
@@ -207,12 +212,12 @@ def lambda_handler(event, context):
     """ Route the incoming request based on type (LaunchRequest, IntentRequest,
     etc.) The JSON body of the request is provided in the event parameter.
     """
-    print(event)
+    """print(event)
     if("key1" in event):
-        return mytempfunction(event)
+        return mytempfunction(event)"""
         
-    print("event.session.application.applicationId=" +
-          event['session']['application']['applicationId'])
+    """print("event.session.application.applicationId=" +
+          event['session']['application']['applicationId'])"""
 
     """
     Uncomment this if statement and populate with your skill's application ID to
@@ -233,3 +238,4 @@ def lambda_handler(event, context):
         return on_intent(event['request'], event['session'])
     elif event['request']['type'] == "SessionEndedRequest":
         return on_session_ended(event['request'], event['session'])
+    
