@@ -9,6 +9,8 @@ http://amzn.to/1LGWsLG
 
 from __future__ import print_function
 import boto3
+import post_to_database
+import read_from_database
 
 # --------------- Helpers that build all of the responses ----------------------
 
@@ -74,7 +76,11 @@ def handle_session_end_request():
 def handle_add_food_intent(intent):
     #print(intent['slots']['food_type'])
     user_food = intent['slots']['food_type']['value']
+    quantity = intent['slots']['quantity']['value']
     #print("User food was %s", user_food)
+    food_item = [user_food, quantity]
+    print("Food item is", food_item)
+    post_to_database.check_item_existence(food_item)
     
     
 
