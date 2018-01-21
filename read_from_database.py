@@ -13,15 +13,15 @@ def get_item_information(food_item):
 
     table = dynamodb.Table('Food_Items')
 
-	try:
-	    response = table.get_item(
-	        Key={
-	            'Identifier': food_item[0]
-	        }
-	    )
-	except ClientError as e:
-	    print(e.response['Error']['Message'])
-	else:
-	    item = response['Item']
-	    print("GetItem succeeded:")
-	    return item
+    try:
+        response = table.get_item(
+            Key={
+                'Identifier': food_item[0]
+            }
+        )
+    except ClientError as e:
+        print(e.response['Error']['Message'])
+    else:
+        item = response['Item']
+        print("GetItem succeeded:")
+        return item
