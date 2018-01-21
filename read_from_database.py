@@ -62,6 +62,7 @@ def get_user_information_for_FoodType(foodType):
         response = table.get_item(
             Key={
                 'User': 'Amish',
+                'Date': '20180121'
             },
             ConditionExpression={'attribute_exists(foodType)'}
         )
