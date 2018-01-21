@@ -183,6 +183,13 @@ def handle_add_food_intent(intent):
         post_to_database.updateNewFoodInFoodConsumptionTable(data_to_post)
     
     return basic_say("Okay cool, I hope you enjoyed your %s!" % user_food)
+    
+
+def handle_list_all_intent(intent):
+    print("Called handle_list_all_intent with intent:", intent)
+    all_user_info = read_from_database.get_user_information()
+    print("all_user_info:", all_user_info)
+    
 
 
 def basic_say(words, should_end_session=True):
@@ -284,6 +291,8 @@ def on_intent(intent_request, session):
         return handle_add_food_intent(intent)
     elif intent_name == "GetNutritionIntent":
         return handle_get_nutrition_intent(intent)
+    elif intent_name == "ListAllIntent":
+        return handle_list_all_intent(intent)
     else:
         raise ValueError("Invalid intent")
 
