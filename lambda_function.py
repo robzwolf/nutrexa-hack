@@ -79,10 +79,8 @@ def handle_add_food_intent(intent):
     
     # Default quantity is 1 if it was not specified
     quantity = 1
-    try:
-        quantity = intent['slots']['quantity']['value']
-    except:
-        pass
+    if intent['slots']['food_quantity']['value'] != '?':
+        quantity = intent['slots']['food_quantity']['value']
     
     food_item = [user_food, quantity]
     
