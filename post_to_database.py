@@ -69,8 +69,8 @@ def updateFoodConsumptionTable(food_info):
         },
         UpdateExpression="set Potasium = Potasium + :valOfPotasium, Sodium = Sodium + :valOfSodium",
         ExpressionAttributeValues={
-            ':valOfPotasium' : int(food_info[4]),
-            ':valOfSodium' : int(food_info[5])
+            ':valOfPotasium' : decimal.Decimal(food_info[4]),
+            ':valOfSodium' : decimal.Decimal(food_info[5])
         },
         ReturnValues="UPDATED_NEW"
     )
