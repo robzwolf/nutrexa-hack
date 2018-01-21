@@ -111,7 +111,8 @@ def handle_add_food_intent(intent):
     username = "Amish"
     
     # Make a pretty date string yyyymmdd
-    date_string = str(now.year) + str(now.month) + str(now.day)
+    #date_string = str(now.year) + str(now.month) + str(now.day)
+    date_string = "20180121" # Hardcoded because of leading zero on month 
     
     # Get potassium
     potassium = item_info['Potasium']

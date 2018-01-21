@@ -1,3 +1,4 @@
+git pull
 if [ -e Archive.zip ]
 then
 	rm Archive.zip
