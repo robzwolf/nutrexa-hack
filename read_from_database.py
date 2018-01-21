@@ -5,6 +5,7 @@ import boto3
 import json
 import decimal
 from boto3.dynamodb.conditions import Key, Attr
+from botocore.exceptions import ClientError
 
 def get_item_information(food_item):
     # Get item information
