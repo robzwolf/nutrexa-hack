@@ -123,7 +123,7 @@ def handle_add_food_intent(intent):
     
     return basic_say("Okay cool, I hope you enjoyed your %s!" % user_food)
 
-    
+
 def basic_say(words, should_end_session=True):
     return build_response({}, build_speechlet_response(
         "Response", words, None, should_end_session))
