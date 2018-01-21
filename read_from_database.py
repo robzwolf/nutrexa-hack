@@ -25,3 +25,55 @@ def get_item_information(food_item):
         item = response['Item']
         print("GetItem succeeded:")
         return item
+
+
+
+def get_user_information():
+    #Get all information and check the health
+
+    dynamodb = boto3.resource("dynamodb")
+
+    table = dynamodb.Table('Food_Consumption')
+
+    try:
+        response = table.get_item(
+            Key={
+                'User': "Amish"
+            }
+        )
+    except ClientError as e:
+        print(e.response['Error']['Message'])
+    else:
+        item = response['Item']
+        print("GetItem succeeded:")
+        return item
+
+
+def get_user_information_for_FoodType(foodType):
+    #Get information of the particular food and check the quantity
+
+    dynamodb = boto3.resource("dynamodb")
+
+    table = dynamodb.Table('Food_Consumption')
+
+    try:
+        response = table.get_item(
+            Key={
+                'User': 'Amish',
+            },
+            ConditionExpression={'attribute_exists(foodType)'}
+        )
+    except ClientError as e:
+        print(e.response['Error']['Message'])
+    else:
+        item = response['Item']
+        print("GetItem with Food Type succeeded:")
+        return item
+
+
+def get_user_information_for_NutritionType():
+    #Get all information and check the health
+
+    dynamodb = boto3.resource("dynamodb")
+
+    table = dynamodb.Table('Food_Consumption')

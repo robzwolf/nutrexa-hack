@@ -78,6 +78,36 @@ def handle_session_end_request():
     should_end_session = True
     return build_response({}, build_speechlet_response(
         card_title, speech_output, None, should_end_session))
+
+
+def handle_get_nutrition_intent(intent):
+
+    nutrition_category = None
+    try:
+        nutrition_category = intent['slots']['nutritional_category']['value'].lower()
+    except:
+        pass
+
+    food_type = None
+    try:
+        food_type = intent['slots']['food_List']['value'].lower()
+    except:
+        pass
+    
+    #if(!nutritional_category=null && !food_type=null):
+
+    if nutritional_category is None and food_type is None:
+        read_from_database.get_user_information() # If the user asked "how healthy am I today"
+    elif nutritional_category is None and food_type is not None:
+        # User asked "How many food_type did I have today"
+        read_from_database.get_user_information_for_FoodType(food_type)
+    if not nutritional_category is None and food_type is None:
+        # User asked "What's my nutritional_category level"
+        
+
+
+
+
         
 def handle_add_food_intent(intent):
     
