@@ -6,6 +6,7 @@ from random import randint
 import json
 import decimal
 from boto3.dynamodb.conditions import Key, Attr
+import nutritionix
 
 def check_item_existence(food_item):
     # Check the item exists
@@ -34,12 +35,15 @@ def add_item_to_DB(food_item):
     dynamodb = boto3.resource("dynamodb")
 
     table = dynamodb.Table('Food_Items')
+    
+    nutri = nutritionix.do_nutri(food_item[0])
 
     response = table.put_item(
        Item={
             'Identifier': food_item[0],
-            'Sodium': randint(20,100),
-            'Potasium': randint(120,180)
+            'Sodium': nutri['sodium'],#randint(20,100),
+            'Potasium': nutri['potassium'],#randint(120,180),
+            'Calories': nutri['calories']
             }
     )
 
@@ -67,11 +71,12 @@ def updateOldFoodInFoodConsumptionTable(food_info):
             'User': userName,
             'Date': date
         },
-        UpdateExpression="set " +food_info[2]+ " = " +food_info[2]+ " + :quantity,  Potasium = Potasium + :valOfPotasium, Sodium = Sodium + :valOfSodium, Calories = :valOfSodium + :valOfPotasium",
+        UpdateExpression="set " +food_info[2]+ " = " +food_info[2]+ " + :quantity,  Potasium = Potasium + :valOfPotasium, Sodium = Sodium + :valOfSodium, Calories = Calories + :valOfCalories",
         ExpressionAttributeValues={
             ':quantity' : food_info[3],
             ':valOfPotasium' : food_info[4],
-            ':valOfSodium' : food_info[5]
+            ':valOfSodium' : food_info[5],
+            ':valOfCalories' : food_info[6]
         },
         ReturnValues="UPDATED_NEW"
     )
@@ -100,15 +105,15 @@ def updateNewFoodInFoodConsumptionTable(food_info):
             'User': userName,
             'Date': date
         },
-        UpdateExpression="set " +food_info[2]+ " = :quantity,  Potasium = Potasium + :valOfPotasium, Sodium = Sodium + :valOfSodium",
+        UpdateExpression="set " +food_info[2]+ " = :quantity,  Potasium = Potasium + :valOfPotasium, Sodium = Sodium + :valOfSodium, Calories = Calories + :valOfCalories",
         ExpressionAttributeValues={
             ':quantity' : food_info[3],
             ':valOfPotasium' : food_info[4],
-            ':valOfSodium' : food_info[5]
+            ':valOfSodium' : food_info[5],
+            ':valOfCalories' : food_info[6]
         },
         ReturnValues="UPDATED_NEW"
     )
 
     print("UpdateItem succeeded:")
     print(food_info)
-

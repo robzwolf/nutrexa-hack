@@ -13,6 +13,7 @@ import post_to_database
 import read_from_database
 import datetime
 import nutritionix_api_key
+import nutritionix
 
 # Recommended daily allowances in milligrams
 POTASSIUM_RDA = 3500
@@ -132,7 +133,11 @@ def handle_get_nutrition_intent(intent):
 
 def handle_add_food_intent(intent):
     
+    
+    
     user_food = intent['slots']['food_type']['value'].lower()
+    
+    #nutritionix.do_nutri(user_food)
     
     # Default quantity is 1 if it was not specified
     quantity = 1
@@ -176,8 +181,11 @@ def handle_add_food_intent(intent):
     # Get sodium
     sodium = item_info['Sodium']
     
+    # Get Calories
+    calories = item_info['Calories']
+    
     # Prepare data in format accepted by post_to_database
-    data_to_post = [username, date_string, user_food, int(quantity), potassium, sodium]
+    data_to_post = [username, date_string, user_food, int(quantity), potassium, sodium, calories]
     
     # Send data block to database and calculate new totals for the day
     if itemExistance:

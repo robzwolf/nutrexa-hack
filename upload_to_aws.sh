@@ -16,7 +16,7 @@ else
 fi
 echo "Doing zipping..."
 echo
-zip Archive.zip lambda_function.py post_to_database.py read_from_database.py
+zip Archive.zip nutritionix_api_key.py nutritionix.py lambda_function.py post_to_database.py read_from_database.py
 echo
 echo "Made Archive.zip"
 echo
