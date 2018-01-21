@@ -198,7 +198,13 @@ def handle_list_all_intent(intent):
         if key not in skip_keys:
             consumed_food_items[key] = all_user_info[key]
     print("consumed_food_items:", consumed_food_items)
-    return basic_say("You ate some food today")
+    speech_output = "You have eaten "
+    
+    for food in consumed_food_items.keys():
+        speech_output += str(consumed_food_items[food]) + " " + food + ", "
+    
+    print("speech_output:", speech_output)
+    return basic_say(speech_output)
     
     """ Date
     hambyrger
