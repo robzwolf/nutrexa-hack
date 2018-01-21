@@ -107,6 +107,9 @@ def get_user_information_for_NutritionType(nutritional_category):
         elif nutritional_category == "potassium":
             print("Returning: ", item["Potasium"])
             return item["Potasium"]
+        elif nutritional_category == "calories":
+            print("Returning: ", item["Calories"])
+            return item["Calories"]
         else:
             print("Returning -1 because nutritional_category was neither sodium nor potassium")
             return -1
