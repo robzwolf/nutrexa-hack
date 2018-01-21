@@ -103,12 +103,8 @@ def handle_get_nutrition_intent(intent):
         read_from_database.get_user_information_for_FoodType(food_type)
     if not nutritional_category is None and food_type is None:
         # User asked "What's my nutritional_category level"
-        
+        pass
 
-
-
-
-        
 def handle_add_food_intent(intent):
     
     user_food = intent['slots']['food_type']['value'].lower()
