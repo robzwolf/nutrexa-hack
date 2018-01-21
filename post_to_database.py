@@ -54,7 +54,7 @@ def updateFoodConsumptionTable(food_info):
 
     dynamodb = boto3.resource("dynamodb")
 
-    table = dynamodb.Table('FoodConsumption')
+    table = dynamodb.Table('Food_Consumption')
 
     userName = food_info[0]
 
