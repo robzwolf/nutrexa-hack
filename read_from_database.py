@@ -74,7 +74,7 @@ def get_user_information_for_FoodType(foodType):
         print(item)
         print("GetItem with Food Type succeeded:")
         #return item
-        return item[food_type]
+        return item[foodType]
 
 
 def get_user_information_for_NutritionType():
