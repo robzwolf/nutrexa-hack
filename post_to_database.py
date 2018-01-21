@@ -38,7 +38,7 @@ def add_item_to_DB(food_item):
     response = table.put_item(
        Item={
             'Identifier': food_item[0],
-            'Sodium': randint(20,100)
+            'Sodium': randint(20,100),
             'Potasium': randint(120,180)
             }
         }
