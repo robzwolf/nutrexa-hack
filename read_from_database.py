@@ -24,7 +24,4 @@ def get_item_information(food_item):
 	else:
 	    item = response['Item']
 	    print("GetItem succeeded:")
-	    print(json.dumps(item, indent=4, cls=DecimalEncoder))
-
-	    print("get_item_information called", food_item)
-	    return True
+	    return item
