@@ -24,7 +24,7 @@ def build_speechlet_response(title, output, reprompt_text, should_end_session):
         'outputSpeech': {
             'type': 'PlainText',
             'text': output
-        },
+        }""",
         'card': {
             'type': 'Simple',
             'title': "SessionSpeechlet - " + title,
@@ -35,7 +35,7 @@ def build_speechlet_response(title, output, reprompt_text, should_end_session):
                 'type': 'PlainText',
                 'text': reprompt_text
             }
-        },
+        }""",
         'shouldEndSession': should_end_session
     }
 

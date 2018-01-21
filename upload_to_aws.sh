@@ -24,8 +24,8 @@ echo "Uploading to AWS..."
 aws lambda update-function-code --function-name New_Lambda --zip-file fileb:///Users/robbie/hackcambridge/nutrexa-hack/Archive.zip 
 echo "Cleaning up..."
 rm Archive.zip
-
 echo
 echo "----------"
 echo "Completed!"
 echo "----------"
+echo
