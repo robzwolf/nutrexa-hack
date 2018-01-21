@@ -47,7 +47,40 @@ def add_item_to_DB(food_item):
 
 
 
-def updateFoodConsumptionTable(food_info):
+def updateNewFoodInFoodConsumptionTable(food_info):
+    # Update the content for the user
+
+    print("update_item_to_DB food Consumption")
+
+    dynamodb = boto3.resource("dynamodb")
+
+    table = dynamodb.Table('Food_Consumption')
+
+    userName = food_info[0]
+
+    date = food_info[1]
+
+    print(food_info)
+
+    response = table.update_item(
+        Key={
+            'User': userName,
+            'Date': date
+        },
+        UpdateExpression="set " +food_info[2]+ " = " +food_info[2]+ " + :quantity,  Potasium = Potasium + :valOfPotasium, Sodium = Sodium + :valOfSodium",
+        ExpressionAttributeValues={
+            ':quantity' : food_info[3],
+            ':valOfPotasium' : food_info[4],
+            ':valOfSodium' : food_info[5]
+        },
+        ReturnValues="UPDATED_NEW"
+    )
+
+    print("UpdateItem succeeded:")
+    print(food_info)
+
+
+def updateOldFoodInFoodConsumptionTable(food_info):
     # Update the content for the user
 
     print("update_item_to_DB food Consumption")

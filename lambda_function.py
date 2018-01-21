@@ -95,9 +95,10 @@ def handle_add_food_intent(intent):
     
     print("Food item is", food_item)
     
+    itemExistance = post_to_database.check_item_existence(food_item)
     
     # Check if the item is understood (exists in Food_Items DB) and act appropriately
-    if post_to_database.check_item_existence(food_item):
+    if itemExistance:
         print("check_item_existence returned True")
         #return basic_say("That item existed already.")
     else:
@@ -128,7 +129,10 @@ def handle_add_food_intent(intent):
     data_to_post = [username, date_string, user_food, quantity, potassium, sodium]
     
     # Send data block to database and calculate new totals for the day
-    post_to_database.updateFoodConsumptionTable(data_to_post)
+    if itemExistance:
+        post_to_database.updateNewFoodInFoodConsumptionTable(data_to_post)
+    else
+        post_to_database.updateNewFoodInFoodConsumptionTable(data_to_post)
     
     return basic_say("Okay cool, I hope you enjoyed your %s!" % user_food)
 
