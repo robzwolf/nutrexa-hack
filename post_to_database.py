@@ -67,9 +67,8 @@ def updateFoodConsumptionTable(food_info):
             'User': userName,
             'Date': date
         },
-        UpdateExpression="set " + food_info[2] + " = " + food_info[2] + " + :quantity , Potasium = Potasium + :valOfPotasium, Sodium = Sodium + :valOfSodium",
+        UpdateExpression="set Potasium = Potasium + :valOfPotasium, Sodium = Sodium + :valOfSodium",
         ExpressionAttributeValues={
-            ':quantity' : food_info[3],
             ':valOfPotasium' : food_info[4],
             ':valOfSodium' : food_info[5]
         },
