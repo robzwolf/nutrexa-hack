@@ -191,7 +191,7 @@ def handle_list_all_intent(intent):
     print("Called handle_list_all_intent with intent:", intent)
     all_user_info = read_from_database.get_user_information()
     print("all_user_info:", all_user_info)
-    
+    return basic_say("You ate some food today")
 
 
 def basic_say(words, should_end_session=True):
