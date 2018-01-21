@@ -47,7 +47,7 @@ def add_item_to_DB(food_item):
 
 
 
-def updateNewFoodInFoodConsumptionTable(food_info):
+def updateOldFoodInFoodConsumptionTable(food_info):
     # Update the content for the user
 
     print("update_item_to_DB food Consumption")
@@ -80,7 +80,7 @@ def updateNewFoodInFoodConsumptionTable(food_info):
     print(food_info)
 
 
-def updateOldFoodInFoodConsumptionTable(food_info):
+def updateNewFoodInFoodConsumptionTable(food_info):
     # Update the content for the user
 
     print("update_item_to_DB food Consumption")

@@ -130,7 +130,7 @@ def handle_add_food_intent(intent):
     
     # Send data block to database and calculate new totals for the day
     if itemExistance:
-        post_to_database.updateNewFoodInFoodConsumptionTable(data_to_post)
+        post_to_database.updateOldFoodInFoodConsumptionTable(data_to_post)
     else:
         post_to_database.updateNewFoodInFoodConsumptionTable(data_to_post)
     
