@@ -68,11 +68,13 @@ def get_user_information_for_FoodType(foodType):
         )
     except ClientError as e:
         print(e.response['Error']['Message'])
+        return 0
     else:
         item = response['Item']
         print(item)
         print("GetItem with Food Type succeeded:")
-        return item
+        #return item
+        return item[food_type]
 
 
 def get_user_information_for_NutritionType():
