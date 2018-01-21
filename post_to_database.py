@@ -2,7 +2,7 @@
 
 from __future__ import print_function
 import boto3
-import random
+from random import randint
 import json
 import decimal
 from boto3.dynamodb.conditions import Key, Attr
