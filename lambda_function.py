@@ -25,17 +25,18 @@ def build_speechlet_response(title, output, reprompt_text, should_end_session):
             'type': 'PlainText',
             'text': output
         },
-        'card': {
-            'type': 'Simple',
-            'title': "SessionSpeechlet - " + title,
-            'content': "SessionSpeechlet - " + output
-        },
-        'reprompt': {
-            'outputSpeech': {
-                'type': 'PlainText',
-                'text': reprompt_text
-            }
-        },
+        # ,
+        # 'card': {
+        #     'type': 'Simple',
+        #     'title': "SessionSpeechlet - " + title,
+        #     'content': "SessionSpeechlet - " + output
+        # },
+        # 'reprompt': {
+        #     'outputSpeech': {
+        #         'type': 'PlainText',
+        #         'text': reprompt_text
+        #     }
+        # }
         'shouldEndSession': should_end_session
     }
 
@@ -84,8 +85,11 @@ def handle_add_food_intent(intent):
     
     # Default quantity is 1 if it was not specified
     quantity = 1
-    if intent['slots']['food_quantity']['value'] != '?':
-        quantity = intent['slots']['food_quantity']['value']
+    try:
+        if intent['slots']['food_quantity']['value'] != '?':
+            quantity = intent['slots']['food_quantity']['value']
+    except:
+        pass
     
     food_item = [user_food, quantity]
     
