@@ -41,7 +41,6 @@ def add_item_to_DB(food_item):
             'Sodium': randint(20,100),
             'Potasium': randint(120,180)
             }
-        }
     )
 
     print("PutItem succeeded:")
