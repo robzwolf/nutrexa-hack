@@ -79,9 +79,34 @@ def get_user_information_for_FoodType(foodType):
         return item[foodType]
 
 
-def get_user_information_for_NutritionType():
-    #Get all information and check the health
+def get_user_information_for_NutritionType(nutritional_category):
+    # Get nutritional information for a specific nutritional_category (i.e. sodium or potassium)
 
     dynamodb = boto3.resource("dynamodb")
 
     table = dynamodb.Table('Food_Consumption')
+
+    try:
+        response = table.get_item(
+            Key={
+                'User': 'Amish',
+                'Date': '20180121'
+            }
+        )
+    except ClientError as e:
+        print(e.response['Error']['Message'])
+        print("error getting user information for nutrition type: " + nutritional_category)
+    else:
+        item = response['Item']
+        print(item)
+        print("Get user information for nutrition type succeeded")
+        print("Returning: " + nutritional_category)
+        if nutritional_category == "sodium":
+            print("Returning: ", item["Sodium"])
+            return item["Sodium"]
+        elif nutritional_category == "potassium":
+            print("Returning: ", item["Potasium"])
+            return item["Potasium"]
+        else:
+            print("Returning -1 because nutritional_category was neither sodium nor potassium")
+            return -1
