@@ -13,6 +13,10 @@ import post_to_database
 import read_from_database
 import datetime
 
+# Recommended daily allowances in milligrams
+POTASSIUM_RDA = 3500
+SODIUM_RDA    = 2400
+
 # --------------- Helpers that build all of the responses ----------------------
 
 def build_speechlet_response(title, output, reprompt_text, should_end_session):
