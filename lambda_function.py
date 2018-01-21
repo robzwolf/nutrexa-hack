@@ -102,13 +102,18 @@ def handle_get_nutrition_intent(intent):
         print(sodiumContent)
         potasiumContent = result['Potasium']
         print(potasiumContent)
+        speech_output = ""
         if sodiumContent > 1000:
             print("Lower your sodium Content")
-        elif potasiumContent > 5000:
+            speech_output += "You've eaten too much sodium today. The limit is 1000 and you've had " + str(sodiumContent) + ". ")
+        if potasiumContent > 500:
             print("Lower your potasiumContent")
-        else:
+            speech_output += "You've eaten too much potassium today. The limit is 500 and you've had " + str(potasiumContent) + ". "
+        if speech_output == "":
             print("You are in good health")
-        return basic_say("Something about healthiness")
+            speech_output = "Congratulations, you are in great health!"    
+        return basic_say(speech_output)
+        
     elif nutritional_category is None and food_type is not None:
         # User asked "How many food_type did I have today"
         #print(food_type)
@@ -117,7 +122,10 @@ def handle_get_nutrition_intent(intent):
     if not nutritional_category is None and food_type is None:
         # User asked "What's my nutritional_category level"
         result = read_from_database.get_user_information_for_NutritionType(nutritional_category)
-        pass
+        if result == -1:
+            return basic_say("Sorry, I don't know what " + nutritional_category + " means")
+        return basic_say("You've eaten " + str(result) + " " + nutritional_category + " today".)
+        
 
 def handle_add_food_intent(intent):
     
