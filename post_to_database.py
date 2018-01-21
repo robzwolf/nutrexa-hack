@@ -59,6 +59,8 @@ def updateFoodConsumptionTable(food_info):
     userName = food_info[0]
 
     date = food_info[1]
+    
+    print(food_info)
 
     response = table.update_item(
         Key={
