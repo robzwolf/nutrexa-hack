@@ -63,13 +63,14 @@ def get_user_information_for_FoodType(foodType):
             Key={
                 'User': 'Amish',
                 'Date': '20180121'
-            },
-            ConditionExpression={'AttributesToGet(foodType)'}
+            }
+            #ConditionExpression={'attribute_exists(foodType)'}
         )
     except ClientError as e:
         print(e.response['Error']['Message'])
     else:
         item = response['Item']
+        print(item)
         print("GetItem with Food Type succeeded:")
         return item
 
