@@ -11,6 +11,7 @@ from __future__ import print_function
 import boto3
 import post_to_database
 import read_from_database
+import datetime
 
 # --------------- Helpers that build all of the responses ----------------------
 
@@ -90,12 +91,34 @@ def handle_add_food_intent(intent):
     # Check if the item is understood (exists in Food_Items DB) and act appropriately
     if post_to_database.check_item_existence(food_item):
         print("check_item_existence returned True")
-        return basic_say("That item existed already.")
+        #return basic_say("That item existed already.")
     else:
         print("check_item_existence returned False")
         post_to_database.add_item_to_DB(food_item)
-        return basic_say("That item did not exist, adding it to Food Items database.")
+        #return basic_say("That item did not exist, adding it to Food Items database.")
     
+    # Get current date
+    now = datetime.datetime.now()
+    
+    # Get food item information (sodium, potassium etc.)
+    item_info = read_from_database.get_item_information([user_food])
+    
+    # Make a pretty date string yyyymmdd
+    date_string = now.year + now.month + now.day
+    
+    # Get potassium
+    potassium = item_info['Potasium']
+    
+    # Get sodium
+    sodium = item_info['Sodium']
+    
+    # Prepare data in format accepted by post_to_database
+    data_to_post = [user_food, quantity, date_string, potassium, sodium]
+    
+    # Send data block to database and calculate new totals for the day
+    post_to_database.updateFoodConsumptionTable(data_to_post)
+    
+    return basic_say("Okay cool, I hope you enjoyed your %s!" % user_food)
 
     
 def basic_say(words, should_end_session=True):
