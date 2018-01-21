@@ -99,10 +99,12 @@ def handle_get_nutrition_intent(intent):
     if nutritional_category is None and food_type is None:
         result = read_from_database.get_user_information() # If the user asked "how healthy am I today"
         print(result)
+        return basic_say("Something about healthiness")
     elif nutritional_category is None and food_type is not None:
         # User asked "How many food_type did I have today"
-        print(food_type)
-        read_from_database.get_user_information_for_FoodType(food_type)
+        #print(food_type)
+        result = read_from_database.get_user_information_for_FoodType(food_type)
+        return basic_say("You have eaten " + result + " " + food_type + " today")
     if not nutritional_category is None and food_type is None:
         # User asked "What's my nutritional_category level"
         pass
