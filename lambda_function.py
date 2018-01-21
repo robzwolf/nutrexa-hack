@@ -82,9 +82,9 @@ def handle_session_end_request():
 
 def handle_get_nutrition_intent(intent):
 
-    nutrition_category = None
+    nutritional_category = None
     try:
-        nutrition_category = intent['slots']['nutritional_category']['value'].lower()
+        nutritional_category = intent['slots']['nutritional_category']['value'].lower()
     except:
         pass
 
