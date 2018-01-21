@@ -104,13 +104,18 @@ def handle_get_nutrition_intent(intent):
         print(sodiumContent)
         potasiumContent = result['Potasium']
         print(potasiumContent)
+        caloriesContent = result['Calories']
+        print(potasiumContent)
         speech_output = ""
-        if sodiumContent > 1000:
+        if sodiumContent > 5000:
             print("Lower your sodium Content")
             speech_output += "You've eaten too much sodium today. The limit is 1000 and you've had " + str(sodiumContent) + ". "
-        if potasiumContent > 500:
+        if potasiumContent > 10000:
             print("Lower your potasiumContent")
             speech_output += "You've eaten too much potassium today. The limit is 500 and you've had " + str(potasiumContent) + ". "
+        if caloriesContent > 5000:
+            print("Lower your caloriesContent")
+            speech_output += "You've eaten too much today. Your calories intake for today is " + str(caloriesContent) + ". "
         if speech_output == "":
             print("You are in good health")
             speech_output = "Congratulations, you are in great health!"    
