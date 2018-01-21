@@ -59,7 +59,7 @@ def updateFoodConsumptionTable(food_info):
     userName = food_info[0]
 
     date = food_info[1]
-    
+
     print(food_info)
 
     response = table.update_item(
@@ -67,11 +67,10 @@ def updateFoodConsumptionTable(food_info):
             'User': userName,
             'Date': date
         },
-        UpdateExpression="set " + food_info[2] + " = " + food_info[2] + " + :quantity , Potasium = Potasium + :valOfPotasium, Sodium = Sodium + :valOfSodium",
+        UpdateExpression="set Potasium = Potasium + :valOfPotasium, Sodium = Sodium + :valOfSodium",
         ExpressionAttributeValues={
-            ':quantity' : food_info[3],
-            ':valOfPotasium' : food_info[4],
-            ':valOfSodium' : food_info[5]
+            ':valOfPotasium' : int(food_info[4]),
+            ':valOfSodium' : int(food_info[5])
         },
         ReturnValues="UPDATED_NEW"
     )
