@@ -260,6 +260,8 @@ def on_intent(intent_request, session):
         return handle_session_end_request()
     elif intent_name == "AddFoodIntent":
         return handle_add_food_intent(intent)
+    elif intent_name == "GetNutritionIntent":
+        return handle_get_nutrition_intent(intent)
     else:
         raise ValueError("Invalid intent")
 
