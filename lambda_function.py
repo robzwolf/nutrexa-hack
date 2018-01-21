@@ -126,7 +126,7 @@ def handle_add_food_intent(intent):
     sodium = item_info['Sodium']
     
     # Prepare data in format accepted by post_to_database
-    data_to_post = [username, date_string, user_food, quantity, potassium, sodium]
+    data_to_post = [username, date_string, user_food, int(quantity), potassium, sodium]
     
     # Send data block to database and calculate new totals for the day
     if itemExistance:
