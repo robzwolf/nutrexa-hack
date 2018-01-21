@@ -64,7 +64,7 @@ def get_user_information_for_FoodType(foodType):
                 'User': 'Amish',
                 'Date': '20180121'
             },
-            ConditionExpression={'AttributeExists(foodType)'}
+            ConditionExpression={'AttributeToGet(foodType)'}
         )
     except ClientError as e:
         print(e.response['Error']['Message'])
