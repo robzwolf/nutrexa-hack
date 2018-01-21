@@ -91,7 +91,7 @@ def handle_add_food_intent(intent):
     except:
         pass
     
-    food_item = [user_food, quantity]
+    food_item = [user_food, int(quantity)]
     
     print("Food item is", food_item)
     

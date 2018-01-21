@@ -50,7 +50,7 @@ def add_item_to_DB(food_item):
 def updateOldFoodInFoodConsumptionTable(food_info):
     # Update the content for the user
 
-    print("update_item_to_DB food Consumption")
+    print("update_old_item_to_DB food Consumption")
 
     dynamodb = boto3.resource("dynamodb")
 
@@ -83,7 +83,7 @@ def updateOldFoodInFoodConsumptionTable(food_info):
 def updateNewFoodInFoodConsumptionTable(food_info):
     # Update the content for the user
 
-    print("update_item_to_DB food Consumption")
+    print("update_new_item_to_DB food Consumption")
 
     dynamodb = boto3.resource("dynamodb")
 
