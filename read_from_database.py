@@ -39,7 +39,8 @@ def get_user_information():
     try:
         response = table.get_item(
             Key={
-                'User': "Amish"
+                'User': 'Amish',
+                'Date': '20180121'
             }
         )
     except ClientError as e:
