@@ -126,6 +126,8 @@ def handle_get_nutrition_intent(intent):
             return basic_say("Sorry, I don't know what " + nutritional_category + " means")
         return basic_say("You've eaten " + str(result) + " " + nutritional_category + " today")
         
+    result = read_from_database.get_user_information()
+    print(result)
 
 def handle_add_food_intent(intent):
     
