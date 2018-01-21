@@ -103,6 +103,9 @@ def handle_add_food_intent(intent):
     # Get food item information (sodium, potassium etc.)
     item_info = read_from_database.get_item_information([user_food])
     
+    # Set username
+    username = "Amish"
+    
     # Make a pretty date string yyyymmdd
     date_string = now.year + now.month + now.day
     
@@ -113,7 +116,7 @@ def handle_add_food_intent(intent):
     sodium = item_info['Sodium']
     
     # Prepare data in format accepted by post_to_database
-    data_to_post = [user_food, quantity, date_string, potassium, sodium]
+    data_to_post = [username, date_string, user_food, quantity, potassium, sodium]
     
     # Send data block to database and calculate new totals for the day
     post_to_database.updateFoodConsumptionTable(data_to_post)
