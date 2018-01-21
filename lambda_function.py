@@ -12,6 +12,7 @@ import boto3
 import post_to_database
 import read_from_database
 import datetime
+import nutritionix_api_key
 
 # Recommended daily allowances in milligrams
 POTASSIUM_RDA = 3500
@@ -203,6 +204,7 @@ def handle_list_all_intent(intent):
     for food in consumed_food_items.keys():
         speech_output += str(consumed_food_items[food]) + " " + food + ", "
     
+    speech_output += ". Mmmm, delicious. Looks like someone was hungry today!"
     print("speech_output:", speech_output)
     return basic_say(speech_output)
     
